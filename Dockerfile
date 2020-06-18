@@ -2,7 +2,7 @@ FROM node:alpine3.10
 
 # Install depedencies
 RUN apk add --update vim git
-RUN npm install -g yarn
+RUN yarn -v foo >/dev/null 2>&1 || {npm install -g yarn;}
 
 RUN yarn global add grunt http-server
 
