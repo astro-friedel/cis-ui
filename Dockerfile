@@ -1,8 +1,10 @@
-FROM node:carbon-alpine
+FROM node:alpine3.10
 
 # Install depedencies
-RUN apk add --update vim git 
-RUN npm install -g grunt http-server
+RUN apk add --update vim git
+RUN npm install --global yarn
+
+RUN yarn global add grunt http-server
 
 # Copy in source
 ENV SRCDIR /usr/share/nginx/html
@@ -10,9 +12,9 @@ WORKDIR $SRCDIR
 COPY package.json .
 
 # XXX: npm postinstall won't run, execute manually
-RUN npm install && \
+RUN yarn && \
     cd node_modules/the-graph && \
-    npm install && \
+    yarn && \
     grunt build && \
     rm -rf node-modules/ && \
     cd ../..
