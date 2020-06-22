@@ -2,7 +2,8 @@ FROM node:alpine3.10
 
 # Install depedencies
 RUN echo "\n\n STARTING\n\n"
-RUN apk add --update vim git python3 pkgconfig pixman-dev cairo-dev pango-dev libjpeg-turbo-dev giflib-dev
+RUN apk add --update vim git python3 pkgconfig pixman-dev cairo-dev pango-dev gcc make
+libjpeg-turbo-dev giflib-dev
 RUN echo "\n\n NEXT\n\n"
 RUN yarn -v foo >/dev/null 2>&1 || npm install -g yarn;
 RUN echo "\n\nHERE\n\n"
