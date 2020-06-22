@@ -1,25 +1,24 @@
 FROM node:alpine3.10
 
 # Install depedencies
-RUN echo "\n\n STARTING\n\n"
+
 RUN apk add --update vim git python3 pkgconfig pixman-dev cairo-dev pango-dev g++ make libjpeg-turbo-dev giflib-dev
-RUN echo "\n\n NEXT\n\n"
+
 RUN yarn -v foo >/dev/null 2>&1 || npm install -g yarn;
-RUN echo "\n\nHERE\n\n"
+
 RUN yarn global add grunt http-server
-RUN echo "\n\nWHICH";echo `which pkg-config`
-#RUN pkg-config --list-all
-#RUN pkg-config pixman --libs
-#RUN pkg-config pixman-1 --libs
+
 # Copy in source
 ENV SRCDIR /usr/share/nginx/html
 WORKDIR $SRCDIR
 COPY package.json .
-
+COPY Gruntfile.js .
 # XXX: npm postinstall won't run, execute manually
 RUN yarn && \
     cd node_modules/the-graph && \
     yarn && \
+    pwd && \
+    ls -l && \
     grunt build && \
     rm -rf node-modules/ && \
     cd ../..
