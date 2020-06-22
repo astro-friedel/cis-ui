@@ -9,8 +9,8 @@ RUN echo "\n\nHERE\n\n"
 RUN yarn global add grunt http-server
 RUN echo "\n\nWHICH";echo `which pkg-config`
 #RUN pkg-config --list-all
-RUN pkg-config pixman --libs
-RUN pkg-config pixman-1 --libs
+#RUN pkg-config pixman --libs
+#RUN pkg-config pixman-1 --libs
 # Copy in source
 ENV SRCDIR /usr/share/nginx/html
 WORKDIR $SRCDIR
