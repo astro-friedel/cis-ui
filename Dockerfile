@@ -1,11 +1,13 @@
 FROM node:alpine3.10
 
 # Install depedencies
-RUN apk add --update vim git python3
+RUN echo "\n\n STARTING\n\n"
+RUN apk add --update vim git python3 pkg-config
+RUN echo "\n\n NEXT\n\n"
 RUN yarn -v foo >/dev/null 2>&1 || npm install -g yarn;
-
+RUN echo "\n\nHERE\n\n"
 RUN yarn global add grunt http-server
-
+RUN echo "\n\nWHICH";echo `which pkg-config`
 # Copy in source
 ENV SRCDIR /usr/share/nginx/html
 WORKDIR $SRCDIR
