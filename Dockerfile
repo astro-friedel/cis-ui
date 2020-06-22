@@ -8,7 +8,7 @@ RUN yarn -v foo >/dev/null 2>&1 || npm install -g yarn;
 RUN echo "\n\nHERE\n\n"
 RUN yarn global add grunt http-server
 RUN echo "\n\nWHICH";echo `which pkg-config`
-RUN pkg-config pixman --libs
+RUN pkg-config --list-all
 #RUN pkg-config pixman --libs
 # Copy in source
 ENV SRCDIR /usr/share/nginx/html
